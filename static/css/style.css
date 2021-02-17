@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@600&display=swap');
+
+
+input {
+	background-color: transparent !important;
+}
+/*body {
+	background: url('../bg.jpg');
+	background-repeat: no-repeat;
+	background-origin: content-box;
+	background-position: center;
+}*/
+header {
+	font-family: 'Roboto Mono', monospace;
+}
+label {
+	font-family: 'Lora', serif;
+}
