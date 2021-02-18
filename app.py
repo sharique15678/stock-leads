@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, redirect, session, jsonify
 from flask.helpers import url_for
 # from flask_mail import Mail, Message
 from flask_sqlalchemy import SQLAlchemy
+from datetime import date, timedelta
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "ff00ff"
