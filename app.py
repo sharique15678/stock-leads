@@ -18,7 +18,9 @@ def home():
     return render_template('register.html')
 @app.route('/register-user',methods=["POST"])
 def register_user():
-	session["data"] = request.form
+	data = request.form
+	session["data"] = data
+	session.permanent = True
 	fname = data.get('fname')
 	mname = data.get('mname')
 	lname = data.get('lname')
