@@ -7,11 +7,110 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600;700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Lora:wght@600&display=swap');
+      header {
+        font-family: 'Roboto Mono', monospace;
+      }
+      .main-lead-box{
+        background-color: #f4f4f4;
+        box-shadow: 2px 2px 2px #dcdcdc;
+        margin: 5px !important;
+        border-radius: 20px;
+        border:1px solid #0275d8 ;
+      }
+      .lead-logo{
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+      }
+      div{
+        margin: 0px !important;
+        padding: 0px !important;
+      }
+    </style>
 
-    <title>Home Page For Stock Leads</title>
+    <title>Guest Stock Leads</title>
   </head>
   <body>
-    <h1>This Is the screen Where All Data Will Be shown</h1>
+    <header class="container-fluid">
+      <div class="row justify-content-center mt-2">
+        <div class="col-auto text-center align-middle">
+          <h1>Guest Leads</h1>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="row justify-content-center mt-2">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6">
+          <div class="row justify-content-center">
+            <div class="col-auto main-lead-box" >
+              <div class="lead-box row">
+                <div class="lead-box-in col-8">
+                  <div class="row">
+                    <div class="col-5">
+                      <img src="../static/logo.png" class="lead-logo">
+                    </div>
+                    <div class="main-lead-box-p col-7">
+                      <h6 class="m-0">Lead Name</h6>
+                      <span class="lead-date">2 jan 2020</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <h6 class="m-0">Buy Target</h6>
+                  <span class="buy-target">135</span>
+                </div>
+              </div>
+              <div class="lead-box row">
+               <div class="lead-box-in col-8">
+                    <h5>Expected Profit</h5>
+                    <h5 class="lead-profit">60%</h5>
+                </div>
+                <div class="col-4">
+                  <h6 class="m-0">Sell Target</h6>
+                  <span class="buy-target">145</span>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-auto main-lead-box">
+              <div class="lead-box row">
+                <div class="lead-box-in col-8">
+                  <div class="row">
+                    <div class="col-5">
+                      <img src="../static/logo.png" class="lead-logo">
+                    </div>
+                    <div class="main-lead-box-p col-7">
+                      <h6 class="m-0">Lead Name</h6>
+                      <span class="lead-date">2 jan 2020</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <h6 class="m-0">Buy Target</h6>
+                  <span class="buy-target">135</span>
+                </div>
+              </div>
+              <div class="lead-box row">
+               <div class="lead-box-in col-8">
+                    <h5>Expected Profit</h5>
+                    <h5 class="lead-profit">60%</h5>
+                </div>
+                <div class="col-4">
+                  <h6 class="m-0">Sell Target</h6>
+                  <span class="buy-target">145</span>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </main>
 
     
 
