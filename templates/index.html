@@ -23,6 +23,24 @@
         border:1px solid /*#ea728c*/ #40C4FF;
         /*display: none;*/
       }
+      .main-lead-box .buy , .main-lead-box .sell {
+        font-size: 1.2rem;
+        font-weight: 700;
+        font-family: 'Lora', serif;
+        text-align: center;
+      }
+      .main-lead-box .buy span {
+        color: purple;
+        text-align: center; 
+        font-size: 1.5rem;
+        font-family: 'Roboto Mono', monospace;
+      }
+      .main-lead-box .sell span {
+        color: green;
+        text-align: center; 
+        font-size: 1.5rem;
+        font-family: 'Roboto Mono', monospace;
+      }
       .lead-logo{
         width: 100%;
         height: 100%;
@@ -36,7 +54,14 @@
       header  div .lead {
         border: solid 1px black;
         background-color: #40C4FF;
-        font-size: 0.8rem;
+        font-size: 1rem;
+        color: white;
+        font-family: 'Lora', serif;
+      }
+      header  div .lead span {
+        color: yellow ;
+        font-size: 1.5rem;
+        font-family: 'Roboto Mono', monospace;
       }
       header  div .l1 {
         border-top-left-radius: 5px;
@@ -57,6 +82,9 @@
   <body>
     <header class="row justify-content-center container-fluid m-0 p-0" style="margin-right: 10px !important;">
       <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6" style="padding-left: 10px;padding-right: 10px;">
+        <div class="row justify-content-center">
+          <div class="col-auto"> <img src="../static/logo.png"> </div>
+        </div>
         <div class="row mt-2">
           <div class="col text-center align-middle p-0">
            <a href="{{url_for('subscribe')}}"><h2> <i class="fas fa-list-ul"></i> Leads</h2> </a>
@@ -86,132 +114,39 @@
 
           <a href="{{url_for('subscribe')}}">
             <div class="col-auto main-lead-box">
-              <div class="lead-box row" >
-                <div class="col">
-                  <div class="row justify-content-center">
-                    <div class="col-12">
-                      <img src="../static/logo.png" class="lead-logo">
+                    <div class="lead-box row">
+                      <div class="lead-box-in col-8">
+                        <div class="row">
+                          <div class="col-5">
+                            <img src="../static/logo.png" class="lead-logo">
+                          </div>
+                          <div class="main-lead-box-p col-7">
+                            <span class="m-0" style="font-size: 1.2rem;font-weight: 500;font-family: 'Lora', serif;">Lead Name</span> <br>
+                            <span class="lead-date" style="font-size: 0.8rem;">2 jan 2020</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4 buy">
+                        <p class="m-0">Buy Target</p>
+                        <span class="buy-target d-block">135</span>
+                      </div>
                     </div>
-                    <div class="col-12 text-center">
-                      <h6 class="m-0">Lead 1</h6>
-                      <span class="lead-date">2 jan 2020</span>
+                    <div class="lead-box row">
+                     <div class="lead-box-in col-8" style="padding-left: 3px !important;">
+                          <h5 style="font-family: 'Lora', serif;" class="text-center">Expected Profit</h5>
+                          <h4 class="lead-profit text-center"> <b>60%</b></h4>
+                      </div>
+                      <div class="col-4 sell">
+                        <p class="m-0">Sell Target</p>
+                        <span class="sell-target d-block">145</span>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="col" style="display: flex;align-items: center;">
-                  <div class="row" >
-                    <h6 class="m-0">Buy Target</h6>
-                    <span class="buy-target">135</span>
-                  </div>
-                </div >
-                <div class="col" style="display: flex;align-items: center;">
-                  <div class="row justify-content-center" >
-                    <h6 class="m-0">Sell Target</h6>
-                    <span class="buy-target">145</span>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="row justify-content-center">
-                    <div class="row justify-content-center">
-                    <div class="col-12">
-                      <b>Expected Profit</b> <br>
-                      <span class="lead-profit">60%</span>
-                    </div>
-                    <div class="col-12 text-success" style="margin-top: 10px !important;">
-                      <b>Good for Option</b>
-                    </div>
-                  </div>
-                  </div>
-                </div>
+                   <!--  <div class="row justify-content-center">
+                      <div class="col-auto text-success"><b>Good For Option</b></div>
+                    </div> -->
               </div>
-            </div>
           </a>
 
-          <a href="{{url_for('subscribe')}}">
-            <div class="col-auto main-lead-box">
-              <div class="lead-box row" >
-                <div class="col">
-                  <div class="row justify-content-center">
-                    <div class="col-12">
-                      <img src="../static/logo.png" class="lead-logo">
-                    </div>
-                    <div class="col-12 text-center">
-                      <h6 class="m-0">Lead 2</h6>
-                      <span class="lead-date">2 jan 2020</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col" style="display: flex;align-items: center;">
-                  <div class="row" >
-                    <h6 class="m-0">Buy Target</h6>
-                    <span class="buy-target">135</span>
-                  </div>
-                </div >
-                <div class="col" style="display: flex;align-items: center;">
-                  <div class="row justify-content-center" >
-                    <h6 class="m-0">Sell Target</h6>
-                    <span class="buy-target">145</span>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="row justify-content-center">
-                    <div class="row justify-content-center">
-                    <div class="col-12">
-                      <b>Expected Profit</b> <br>
-                      <span class="lead-profit">60%</span>
-                    </div>
-                    <div class="col-12 text-success" style="margin-top: 10px !important;">
-                      <b>Good for Option</b>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-            
-          <a href="{{url_for('subscribe')}}">
-            <div class="col-auto main-lead-box">
-              <div class="lead-box row" >
-                <div class="col">
-                  <div class="row justify-content-center">
-                    <div class="col-12">
-                      <img src="../static/logo.png" class="lead-logo">
-                    </div>
-                    <div class="col-12 text-center">
-                      <h6 class="m-0">Lead 3</h6>
-                      <span class="lead-date">2 jan 2020</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col" style="display: flex;align-items: center;">
-                  <div class="row" >
-                    <h6 class="m-0">Buy Target</h6>
-                    <span class="buy-target">135</span>
-                  </div>
-                </div >
-                <div class="col" style="display: flex;align-items: center;">
-                  <div class="row justify-content-center" >
-                    <h6 class="m-0">Sell Target</h6>
-                    <span class="buy-target">145</span>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="row justify-content-center">
-                    <div class="row justify-content-center">
-                    <div class="col-12">
-                      <b>Expected Profit</b> <br>
-                      <span class="lead-profit">60%</span>
-                    </div>
-                    <div class="col-12 text-success" style="margin-top: 10px !important;">
-                      <b>Good for Option</b>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
 
 
             <hr class="mt-2">
