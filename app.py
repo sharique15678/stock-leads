@@ -55,7 +55,7 @@ class AllNotifications(db.Model):
 	subject = db.Column(db.String(100), nullable=False)
 	body = db.Column(db.Text, nullable=False)
 
-#Making Models For databse 
+#Making Models For databse
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -79,7 +79,7 @@ def subscribe_user():
 	pin = data.get('pin')
 	password = data.get('pass')
 	conrfirm_password = data.get('conpass')
-	return rendirect(url_for('short_leads'))
+	return redirect(url_for('short_leads'))
 
 @app.route('/notifications')
 def notifications():

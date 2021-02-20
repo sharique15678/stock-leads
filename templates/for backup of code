@@ -1,0 +1,21 @@
+<!-- {% for notification in notifications %}
+            {% if notification.date != date %}
+              <div class="noti" style="margin-left: 20px;">
+                <h4 class="m-0 p-0">{{notification.name}}</h4>
+                <p class="m-0 p-0">{{notification.body}}</p>
+                <hr>
+              </div>
+            {% endif %}
+          {% end for%} -->
+
+
+
+           <!-- {% for notification in notifications %}
+            {% if notification.date == date %}
+              <div class="noti" style="margin-left: 20px;">
+                <h4 class="m-0 p-0">{{notification.name}}</h4>
+                <p class="m-0 p-0">{{notification.body}}</p>
+                <hr>
+              </div>
+            {% endif %}
+          {% end for%} -->
