@@ -56,22 +56,22 @@
     <main class="container-fluid">
       <div class="row justify-content-center mt-2">
         <div class="col-12 col-xl-4 col-lg-6 col-md-6 col-sm-8">
-          <form method="POST" action="{{url_for('register_user')}}">
+          <form method="POST" action="{{url_for('subscribe_user')}}">
           <div id="form-box" class="p-3">
             <div class="control-group">
               <label for="fname" class="form-label">First Name<span class="text-danger">*</span> :</label>
-              <input name="fname" type="text" class="form-control" id="fname" placeholder="Your First Name" required minlength="1"  value="824210">
+              <input name="fname" type="text" class="form-control" id="fname" placeholder="Your First Name" required minlength="1"  value="824210" maxlength="49">
             <div class="control-group">
               <label for="mname" class="form-label">Midddle Name :</label>
               <input type="text"name="mname" class="form-control" id="mname" placeholder="Your Middle Name" value="824210">
             </div>
             <div class="control-group">
               <label for="lname" class="form-label">Last Name<span class="text-danger">*</span> :</label>
-              <input type="text" name="lname" class="form-control" id="lname" placeholder="Your Last Name" required minlength="1" value="824210">
+              <input type="text" name="lname" class="form-control" id="lname" placeholder="Your Last Name" required minlength="1" value="824210" maxlength="49">
             </div>
             <div class="control-group">
               <label for="email" class="form-label">Email<span class="text-danger">*</span> :</label>
-              <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required minlength="1" value="name@example.com">
+              <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required minlength="1" value="name@example.com" maxlength="99">
             </div>
             <!-- address-line1 input-->
             <div class="control-group mt-2">
@@ -95,7 +95,7 @@
             <div class="control-group">
                 <label class="form-label">City / Town<span class="text-danger">*</span> :</label>
                 <div class="controls" required minlength="1" value="824210">
-                    <input id="city" name="city" type="text" placeholder="city" class="form-control" value="824210" >
+                    <input id="city" name="city" type="text" placeholder="city" class="form-control" value="824210" maxlength="49" >
                 </div>
             </div>
             <!-- region input-->
@@ -103,7 +103,7 @@
                 <label class="form-label">State / Province / Region<span class="text-danger">*</span> :</label>
                 <div class="controls">
                     <input id="region" name="state" type="text" placeholder="state / province / region"
-                    class="form-control" required minlength="1" value="824210">
+                    class="form-control" required minlength="1" value="824210" maxlength="49">
                 </div>
             </div>
             <div class="control-group">
@@ -136,6 +136,9 @@
       <!-- starting column -->
       </div>
       <div class="row justify-content-center">
+        <div class="col-12 text-center">
+          Already subscribed? <a href="#">Login Here</a>
+        </div>
         <div class="col-12 col-xl-4 col-lg-6 col-md-6 col-sm-8 mt-5">
           <ul>
             <li>Fields Marked With <span class="text-danger">*</span> are Mandetory.</li>
