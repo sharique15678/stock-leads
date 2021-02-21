@@ -94,7 +94,7 @@ def short_leads():
 def long_leads():
 	return render_template('long_leads.html',leads= Leads.query.filter_by(type="long").all())
 
-@app.route('add-all') 
+@app.route('/add-all')
 def add():
 	for i in range(10) :
 		lead = Leads(
@@ -119,3 +119,4 @@ def add():
 			)
 		db.session.add(lead)
 	db.session.commit()
+	return redirect(url_for('home'))
