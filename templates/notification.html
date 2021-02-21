@@ -41,14 +41,12 @@
         <div class="col-12 col-xl-4 col-lg-6 col-md-6 col-sm-8">
           <h3><i class="fas fa-bolt"></i> Today</h3>
           {% for notification in notifications %}
-            {% if notification.date == date %}
               <div class="noti" style="margin-left: 20px;">
                 <h4 class="m-0 p-0">{{notification.name}}</h4>
                 <p class="m-0 p-0">{{notification.body}}</p>
                 <hr>
               </div>
-            {% endif %}
-          {% end for%}
+          {% endfor %}
 
           <!-- <div class="noti" style="margin-left: 20px;">
                 <h4 class="m-0 p-0">Notification 1</h4>
@@ -78,7 +76,7 @@
                 <hr>
               </div>
             {% endif %}
-          {% end for%}
+          {% endfor%}
 
 
 
