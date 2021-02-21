@@ -86,6 +86,7 @@ def subscribe_user():
 def notifications():
 	# user = Users.query.filter_by(email=session["data"]['email'])
 	# notifications = user.notifications + AllNotifications.query.all()
+	notifications = AllNotifications.query.all()
 	return render_template('notification.html',notification=notifications , date = date.today().strftime("%d/%m/%Y"))
 @app.route('/short-term-leads')
 def short_leads():
@@ -118,5 +119,20 @@ def add():
 		    good_for_trade = True
 			)
 		db.session.add(lead)
+	for i in range(10) :
+		notifi = AllNotifications(
+			name = "amazon stock drop" + str(i),
+			subject = "just a testing subject",
+			body = "just to test tis is some body for anytinjhgjhgsdfj"
+			)
+		db.session.add(notifi)
+	for i in range(10) :
+		notifi = AllNotifications(
+			name = "amazon stock drop" + str(i),
+			date = "43/54/2002"
+			subject = "just a testing subject",
+			body = "just to test tis is some body for anytinjhgjhgsdfj"
+			)
+		db.session.add(notifi)
 	db.session.commit()
 	return redirect(url_for('home'))
