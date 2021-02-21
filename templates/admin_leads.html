@@ -99,7 +99,7 @@
                 <div class="sidebar-heading p-0 m-3 mb-0 mt-0">
                     <h4>Admin Options</h4>
                 </div>
-                
+
             <div class="list-group list-group-flush">
               <a
                 href="{{url_for('admin_leads')}}"
@@ -154,7 +154,7 @@
             </thead>
             <tbody>
                 {% for lead in leads %}
-                <tr id="user{{user.id}}">
+                <tr>
                     <th scope="row">{{lead.id}}</th>
                     <td>{{lead.name}}</td>
                     <td>{{lead.type}}</td>
@@ -163,7 +163,7 @@
                     <td>{{lead.good_for_trade}}</td>
                     <td>{{lead.logo}}</td>
                     <td scope="col">
-                        <a href="{{url_for('admin_edit_user',id=user.id)}}" class="btn btn-warning">Edit</a>
+                        <a href="#" class="btn btn-warning">Edit</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -171,7 +171,7 @@
         </table>
     </div>
     <div class="col-auto">
-        <a href="{{url_for('admin_create_new_user')}}" class="btn btn-lg btn-success m-1"><i class="fa fa-plus" aria-hidden="true"></i>Add</a>
+        <a href=#" class="btn btn-lg btn-success m-1"><i class="fa fa-plus" aria-hidden="true"></i>Add</a>
     </div>
 </div>
       </main>

@@ -94,7 +94,7 @@ def admin():
 	return redirect(url_for('admin_leads'))
 
 
-@app.route('/admin/leads') 
+@app.route('/admin/leads')
 def admin_leads():
 	leads = Leads.query.all()
 	return render_template('admin_leads.html',leads=leads)
@@ -102,7 +102,7 @@ def admin_leads():
 @app.route('/admin/notifications')
 def admin_notifications():
 	notifications = AllNotifications.query.all() + Notifications.query.all()
-	return render_template('admin_notifications.html' , notifications=notifications)
+	return render_template('admin_notification.html' , notifications=notifications)
 @app.route('/admin/logout')
 def admin_logout():
 	pass
