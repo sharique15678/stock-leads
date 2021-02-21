@@ -88,6 +88,26 @@ def notifications():
 	# notifications = user.notifications + AllNotifications.query.all()
 	notifications = AllNotifications.query.all()
 	return render_template('notification.html',notifications=notifications , date = date.today().strftime("%d/%m/%Y"))
+
+@app.route('/admin')
+def admin():
+	return redirect(url_for('admin_leads'))
+
+
+@app.route('/admin/leads') 
+def admin_leads():
+	leads = Leads.query.all()
+	return render_template('admin_leads.html',leads=leads)
+
+@app.route('/admin/notifications')
+def admin_notifications():
+	notifications = AllNotifications.query.all() + Notifications.query.all()
+	return render_template('admin_notifications.html' , notifications=notifications)
+@app.route('/admin/logout')
+def admin_logout():
+	pass
+
+
 @app.route('/short-term-leads')
 def short_leads():
 	return render_template('short_leads.html',leads= Leads.query.filter_by(type="short").all())
