@@ -99,6 +99,13 @@ def admin_leads():
 	leads = Leads.query.all()
 	return render_template('admin_leads.html',leads=leads)
 
+@app.route('/admin/leads/edit/<int>')
+def edit_leads(id):
+	lead = Leads.query.get(id)
+	return render_template('admin_edit_lead.html',lead= lead)
+
+
+
 @app.route('/admin/notifications')
 def admin_notifications():
 	notifications = AllNotifications.query.all() + Notifications.query.all()

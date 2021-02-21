@@ -26,7 +26,7 @@
               <h1>Edit Leads</h1>
           </div>
           <div class="col-12">
-              <form action="{{url_for('admin_edit_plan_verify',id=plan.id)}}" method="POST">
+              <form action="#" method="POST">
                   <div class="mb-3">
                       <label for="title" class="form-label">Lead Name</label
               >
@@ -44,9 +44,9 @@
             <label for="pid" class="form-label">Lead Type</label>
             <select name="type" id="type" required class="form-select" aria-label="Default select example">  
                   {% if lead.type=="short" %}
-                  <option value="{{plan.id}}" selected>Short Term</option>
+                  <option value="short" selected>Short Term</option>
                   {% else %}
-                  <option value="{{plan.id}}">Long Term</option>
+                  <option value="long">Long Term</option>
                   {% endif %}    
              </select>
             </div>
@@ -81,10 +81,10 @@
           </div>
 
           <div class="col-auto">
-              <a href="{{url_for('admin_delete_plan',id=plan.id)}}" class="btn btn-danger m-1" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
+              <a href="#" class="btn btn-danger m-1" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
           </div>
           <div class="col-auto">
-              <a href="{{url_for('admin_all_plans')}}" class="btn btn-secondary m-1">Cancel</a>
+              <a href="{{url_for('admin_leads')}}" class="btn btn-secondary m-1">Cancel</a>
           </div>
           <div class="col-12">
               <button type="submit" class="btn btn-primary m-1 w-100" onclick="return confirm('Are you sure you want to Save?');">&nbsp;Save&nbsp;&nbsp;</button>
