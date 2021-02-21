@@ -1,6 +1,5 @@
 
 # A very simple Flask Hello World app for you to get started with...
-
 from flask import Flask, render_template, request, redirect, session, jsonify
 from flask.helpers import url_for
 # from flask_mail import Mail, Message
@@ -12,7 +11,8 @@ app.config["SECRET_KEY"] = "ff00ff"
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=30)
 db = SQLAlchemy(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
-
+app.config['UPLOAD_FOLDER'] = "/logo"
+app.config['MAX_CONTENT_LENGTH'] = 500 * 1024 * 1024
 
 class Leads(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -99,11 +99,30 @@ def admin_leads():
 	leads = Leads.query.all()
 	return render_template('admin_leads.html',leads=leads)
 
-@app.route('/admin/leads/edit/<int>')
-def edit_leads(id):
+@app.route('/admin/leads/edit/<int:id>')
+def edit_lead(id):
 	lead = Leads.query.get(id)
 	return render_template('admin_edit_lead.html',lead= lead)
+@app.route('/admin/leads/edit/confirm/<int:id>',methods=['POST'])
+def confirm_edit_lead(id):
+    data=request.form
+    lead = Leads.query.get(id)
+    lead.name = data.get('name')
+    lead.type = data.get('type')
+    lead.buy_price = data.get('buy_price')
+    lead.sell_price = data.get('sell_price')
+    db.session.commit()
+    return redirect(url_for('admin'))
 
+@app.route('/admin/leads/add')
+def add_lead():
+    return render_template('admin_new_lead.html')
+@app.route('/admin/leads/add/verify',methods=['POST'])
+def verify_add_lead():
+    data = request.form
+    f = request.files['logo']
+    # f.save(f.filename)
+    return f.filename
 
 
 @app.route('/admin/notifications')
@@ -163,3 +182,6 @@ def add():
 		db.session.add(notifi)
 	db.session.commit()
 	return redirect(url_for('home'))
+if __name__ == "__main__" :
+    db.create_all()
+    app.run(debug=True)

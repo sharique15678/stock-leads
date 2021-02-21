@@ -163,7 +163,7 @@
                     <td>{{lead.good_for_trade}}</td>
                     <td>{{lead.logo}}</td>
                     <td scope="col">
-                        <a href="#" class="btn btn-warning">Edit</a>
+                        <a href="{{url_for('edit_lead',id=lead.id)}}" class="btn btn-warning">Edit</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -171,7 +171,7 @@
         </table>
     </div>
     <div class="col-auto">
-        <a href="#" class="btn btn-lg btn-success m-1"><i class="fa fa-plus" aria-hidden="true"></i>Add</a>
+        <a href="{{url_for('add_lead')}}" class="btn btn-lg btn-success m-1"><i class="fa fa-plus" aria-hidden="true"></i>Add</a>
     </div>
 </div>
       </main>
