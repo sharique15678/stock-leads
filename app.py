@@ -50,6 +50,7 @@ class Notifications(db.Model):
 
 class AllNotifications(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	user_id = db.Column(db.String(50), nullable=False , default="all")
 	name = db.Column(db.String(50), nullable=False)
 	date = db.Column(db.String(100), nullable=False, default=date.today().strftime("%d/%m/%Y"))
 	subject = db.Column(db.String(100), nullable=False)
@@ -88,7 +89,33 @@ def notifications():
 	return render_template('notification.html',notification=notifications , date = date.today().strftime("%d/%m/%Y"))
 @app.route('/short-term-leads')
 def short_leads():
-	return render_template('short_leads.html')
+	return render_template('short_leads.html',leads= Leads.query.filter_by(type="short").all())
 @app.route('/long-term-leads')
 def long_leads():
-	return render_template('long_leads.html')
+	return render_template('long_leads.html',leads= Leads.query.filter_by(type="long").all())
+
+@app.route('add-all') 
+def add():
+	for i in range(10) :
+		lead = Leads(
+		    name = "amazon Lead" + str(i),
+		    logo = "../static/logo.png",
+		    type = "short",
+		    buy_price = "255",
+		    sell_price = "855",
+		    profit = "60",
+		    good_for_trade = True
+			)
+		db.session.add(lead)
+	for i in range(10) :
+		lead = Leads(
+		    name = "apple Lead" + str(i),
+		    logo = "../static/logo.png",
+		    type = "long",
+		    buy_price = "255",
+		    sell_price = "855",
+		    profit = "60",
+		    good_for_trade = True
+			)
+		db.session.add(lead)
+	db.session.commit()

@@ -119,6 +119,57 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 box">
           <div class="row justify-content-center">
 
+
+
+              {% for lead in leads %}
+
+              <div class="col-auto main-lead-box">
+                    <div class="lead-box row">
+                      <div class="lead-box-in col-8">
+                        <div class="row">
+                          <div class="col-5">
+                            <img src="{{lead.logo}}" class="lead-logo">
+                          </div>
+                          <div class="main-lead-box-p col-7">
+                            <span class="m-0" style="font-size: 1.2rem;font-weight: 500;font-family: 'Lora', serif;">{{lead.name}}</span> <br>
+                            <span class="lead-date" style="font-size: 0.8rem;">{{lead.date}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4 buy">
+                        <p class="m-0">Buy Target</p>
+                        <span class="buy-target d-block">{{lead.buy_price}}</span>
+                      </div>
+                    </div>
+                    <div class="lead-box row">
+                     <div class="lead-box-in col-8" style="padding-left: 3px !important;">
+                          <h5 style="font-family: 'Lora', serif;" class="text-center">Expected Profit</h5>
+                          <h4 class="lead-profit text-center"> <b>{{lead.profit}}</b></h4>
+                      </div>
+                      <div class="col-4 sell">
+                        <p class="m-0">Sell Target</p>
+                        <span class="sell-target d-block">{{lead.sell_price}}</span>
+                      </div>
+                    </div>
+                   <!--  <div class="row justify-content-center">
+                      <div class="col-auto text-success"><b>Good For Option</b></div>
+                    </div> -->
+                </div>
+
+              {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="col-auto main-lead-box">
                     <div class="lead-box row">
                       <div class="lead-box-in col-8">
