@@ -26,7 +26,7 @@
               <h1>Create New Lead</h1>
           </div>
           <div class="col-12">
-              <form action="{{url_for('verify_add_lead')}}" method="POST">
+              <form action="{{url_for('verify_add_leads')}}" method="POST" id="form">
                   <div class="mb-3">
                       <label for="title" class="form-label">Lead Name</label
               >
@@ -79,15 +79,16 @@
              </select>
             </div>
             <div class="custom-file">
-            <input type="file" class="custom-file-input" required name="logo">
+            <input type="file" class="custom-file-input" required name="logo" id="logo">
             <label class="custom-file-label" for="validatedCustomFile">Choose Logo...</label>
           </div>
+          <input type="hidden" name="logourl" id="logourl">
             </div>
           <div class="col-auto">
               <a href="{{url_for('admin_leads')}}" class="btn btn-secondary m-1">Cancel</a>
           </div>
           <div class="col-12">
-              <button type="submit" class="btn btn-primary m-1 w-100" onclick="return confirm('Are you sure you want to Save?');">&nbsp;Save&nbsp;&nbsp;</button>
+              <button class="btn btn-primary m-1 w-100" onclick="send()">&nbsp;Save&nbsp;&nbsp;</button>
           </div>
           </form>
           </div>
@@ -102,8 +103,44 @@
       integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
       crossorigin="anonymous"
     ></script>
-
-
-    </script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-auth.js"></script>
+<script type="text/javascript">
+  window.onload = function () {
+    var firebaseConfig = {
+    apiKey: "AIzaSyA4lLanoJYob-Q2V5d2De7aG3lCFbhBWiI",
+    authDomain: "stock-leads.firebaseapp.com",
+    projectId: "stock-leads",
+    storageBucket: "stock-leads.appspot.com",
+    messagingSenderId: "272732165489",
+    appId: "1:272732165489:web:f800df5f3e276f1d89d2d0"
+  };
+firebase.initializeApp(firebaseConfig);
+firebase.auth().signInAnonymously().catch(function (error) {
+        // Handle Errors here.
+        var errorMessage = error.message;
+        alert("Error in Authorisation\n" + errorMessage);
+    });
+  }  
+ function send(btn) {
+  var storage = firebase.storage();
+  var storageRef = storage.ref();
+  var d = new Date();
+   var filesRef = storageRef.child('logo');
+   var logoref = filesRef.child("logo"+d.getTime()+d.getSeconds()+".jpg");
+   var file1 = document.getElementById("logo").files[0];
+   logoref.put(file1).then(function (data) {
+        logoref.getDownloadURL().then(function (url) {
+            logourl = String(url);
+            alert(logourl);
+            document.getElementById('logourl').value=logourl;
+            document.getElementById('form').submit();
+        }).catch(function (error) {
+            console.log("An Error Occured.\n" + error.message);
+        });
+    });
+ }
+</script>
   </body>
 </html>

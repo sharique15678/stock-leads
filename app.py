@@ -120,9 +120,18 @@ def add_lead():
 @app.route('/admin/leads/add/verify',methods=['POST'])
 def verify_add_lead():
     data = request.form
-    f = request.files['logo']
-    # f.save(f.filename)
-    return f.filename
+    lead = Leads(
+    	name = data.get('name'),
+	    logo = data.get('logourl'),
+	    type = data.get('type'),
+	    buy_price = str(float(data.get('buy_price'))),
+	    sell_price = str(float(data.get('sell_price'))),
+	    profit = str((float(data.get('sell_price'))-float(data.get('buy_price')))/float(data.get('buy_price'))),
+	    good_for_trade = data.get('good')
+    	)
+    db.session.add(lead)
+    db.session.commit()
+    return data['logourl']
 
 
 @app.route('/admin/notifications')
