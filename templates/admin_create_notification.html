@@ -26,13 +26,13 @@
               <h1>Create Notification</h1>
           </div>
           <div class="col-12">
-              <form action="{{url_for('admin_edit_plan_verify',id=plan.id)}}" method="POST">
+              <form action="{{url_for('verify_add_notification')}}" method="POST">
                   <div class="mb-3">
                       <label for="title" class="form-label">User(s)</label
               >
-              <select name="users" id="plan" required class="form-select">  
+              <select name="users" id="plan" required class="form-select">
                   <option value="all" selected="">All Users</option>
-                  { % for user in users% }
+                  {% for user in users %}
                   <option value="{{user.id}}" selected="">{{user.name}}({{user.email}})</option>
                   {% endfor %}
              </select>
@@ -41,7 +41,7 @@
               <label for="months" class="form-label"
                 >Lead Name</label
               >
-              <input maxlength="50" 
+              <input maxlength="50"
                 type="text"
                 class="form-control"
                 id="months"
@@ -67,12 +67,12 @@
               <label for="months" class="form-label"
                 >body</label
               >
-              <textarea placeholder="Write Plan Details Here." class="form-control" id="detail" rows="3" name="detail" required minlength="1"></textarea>
+              <input placeholder="Write Body Here." class="form-control" id="detail" rows="3" required minlength="1" name="body" />
             </div>
-  
+
             </div>
           <div class="col-auto">
-              <a href="{{url_for('admin_all_plans')}}" class="btn btn-secondary m-1">Cancel</a>
+              <a href="{{url_for('admin_notifications')}}" class="btn btn-secondary m-1">Cancel</a>
           </div>
           <div class="col-12">
               <button type="submit" class="btn btn-primary m-1 w-100" onclick="return confirm('Are you sure you want to Save?');">&nbsp;Save&nbsp;&nbsp;</button>
@@ -84,14 +84,14 @@
     </div>
     <!-- /#wrapper -->
 
-   
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
       crossorigin="anonymous"
     ></script>
 
-    
+
     </script>
   </body>
 </html>

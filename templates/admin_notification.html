@@ -160,16 +160,22 @@
                     <td>{{notifi.date}}</td>
                     <td>{{notifi.subject}}</td>
                     <td>{{notifi.body}}</td>
+                    {% if notifi.user_id == 'all' %}
                     <td scope="col">
-                        <a class="btn btn-warning" href="#" onclick="return confirm('Are you sure you want to Delete?');">Edit</a>
+                        <a class="btn btn-danger" href="{{url_for('delete_public_notification',id=notifi.id)}}" onclick="return confirm('Are you sure you want to Delete?');">Delete</a>
                     </td>
+                    {% else %}
+                    <td scope="col">
+                        <a class="btn btn-danger" href="{{url_for('delete_personal_notification',id=notifi.id)}}" onclick="return confirm('Are you sure you want to Delete?');">Delete</a>
+                    </td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
     <div class="col-auto">
-        <a href="#" class="btn btn-lg btn-success m-1"><i class="fa fa-plus" aria-hidden="true"></i>Add</a>
+        <a href="{{url_for('add_notification')}}" class="btn btn-lg btn-success m-1"><i class="fa fa-plus" aria-hidden="true"></i>Add</a>
     </div>
 </div>
       </main>

@@ -26,7 +26,7 @@
               <h1>Create New Lead</h1>
           </div>
           <div class="col-12">
-              <form action="{{url_for('verify_add_leads')}}" method="POST" id="form">
+              <form action="{{url_for('verify_add_lead')}}" method="POST" id="form">
                   <div class="mb-3">
                       <label for="title" class="form-label">Lead Name</label
               >
@@ -88,7 +88,7 @@
               <a href="{{url_for('admin_leads')}}" class="btn btn-secondary m-1">Cancel</a>
           </div>
           <div class="col-12">
-              <button class="btn btn-primary m-1 w-100" onclick="send()">&nbsp;Save&nbsp;&nbsp;</button>
+              <button class="btn btn-primary m-1 w-100" onclick="send(event)">&nbsp;Save&nbsp;&nbsp;</button>
           </div>
           </form>
           </div>
@@ -122,18 +122,18 @@ firebase.auth().signInAnonymously().catch(function (error) {
         var errorMessage = error.message;
         alert("Error in Authorisation\n" + errorMessage);
     });
-  }  
- function send(btn) {
+  }
+ function send(e) {
+  e.preventDefault()
   var storage = firebase.storage();
   var storageRef = storage.ref();
-  var d = new Date();
+   var d = new Date();
    var filesRef = storageRef.child('logo');
    var logoref = filesRef.child("logo"+d.getTime()+d.getSeconds()+".jpg");
    var file1 = document.getElementById("logo").files[0];
    logoref.put(file1).then(function (data) {
         logoref.getDownloadURL().then(function (url) {
             logourl = String(url);
-            alert(logourl);
             document.getElementById('logourl').value=logourl;
             document.getElementById('form').submit();
         }).catch(function (error) {
