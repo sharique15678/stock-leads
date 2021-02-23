@@ -68,24 +68,12 @@ def subscribe():
 def subscribe_user():
     data = request.form
     if "email" in session :
-    	if session['subscribed'] = True :
+    	if session['subscribed'] == True :
     		return redirect(url_for('short_leads'))
     if Users.query.filter_by(email=data.get('email')).all() :
     	return render_template('subscribe.html',error="User Is Already Registered. Please Login")
     if data.get('pass') != data.get('conpass') :
     	return render_template('subscribe.html',error="Both Passwords Doesnot Match.")
-	user = Users(
-    	fname = data.get('fname'),
-    	mname = data.get('mname'),
-    	lname = data.get('lname'),
-    	email = data.get('email'),
-    	add1 = data.get('add1'),
-    	add2 = data.get('add2'),
-    	city = data.get('city'),
-    	state = data.get('state'),
-    	pin = data.get('pin'),
-    	password = data.get('pass')
-	    )
 	db.session.add(user)
 	db.session.commit()
 	session['email']=data.get('email')
