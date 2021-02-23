@@ -59,13 +59,20 @@ class AllNotifications(db.Model):
 #Making Models For databse
 @app.route('/')
 def home():
-# 	if "email" in session :
-#     	if session['subscribed'] == True :
-#     		return redirect(url_for('short_leads'))
+    if "email" in session :
+        if session['subscribed'] == True :
+            return redirect(url_for('short_leads'))
+
+	# if "email" in session :
+ #    	if session['subscribed'] == True :
+ #    		return redirect(url_for('short_leads'))
     return render_template('index.html')
 
 @app.route('/subscribe')
 def subscribe():
+    if "email" in session :
+        if session['subscribed'] == True :
+            return redirect(url_for('short_leads'))
 # 	if "email" in session :
 #     	if session['subscribed'] == True :
 #     		return redirect(url_for('short_leads'))
@@ -101,6 +108,9 @@ def subscribe_user():
 
 @app.route('/login')
 def login():
+    if "email" in session :
+        if session['subscribed'] == True :
+            return redirect(url_for('short_leads'))
 # 	if "email" not in session :
 #     	return redirect(url_for('login'))
     return render_template('login.html')
@@ -123,6 +133,8 @@ def login_user():
 
 @app.route('/notifications')
 def notifications():
+    if "email" not in session :
+        return redirect(url_for('login'))
 # 	if "email" not in session :
 #     	return redirect(url_for('login'))
 	user = Users.query.filter_by(email=session['email']).first()
@@ -136,14 +148,24 @@ def notifications():
 
 @app.route('/short-term-leads')
 def short_leads():
+    if "email" not in session :
+        return redirect(url_for('login'))
 # 	if "email" not in session :
 #     	return redirect(url_for('login'))
 	return render_template('short_leads.html',leads= Leads.query.filter_by(type="short").all())
 @app.route('/long-term-leads')
 def long_leads():
+    if "email" not in session :
+        return redirect(url_for('login'))
 # 	if "email" not in session :
 #     	return redirect(url_for('login'))
 	return render_template('long_leads.html',leads= Leads.query.filter_by(type="long").all())
+
+@app.route('/logout')
+def logout():
+    session.pop("email",None)
+    session.pop("subscribed",None)
+    return redirect(url_for('home'))
 
 @app.route('/admin')
 def admin():
