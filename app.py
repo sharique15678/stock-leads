@@ -74,12 +74,22 @@ def subscribe_user():
     	return render_template('subscribe.html',error="User Is Already Registered. Please Login")
     if data.get('pass') != data.get('conpass') :
     	return render_template('subscribe.html',error="Both Passwords Doesnot Match.")
-	db.session.add(user)
-	db.session.commit()
-	session['email']=data.get('email')
-	session['subscribed']=Users.query.filter_by(email=session['email']).first().subscribed
-	session.permanent =True
-	return redirect(url_for('short_leads'))
+    user = Users(
+    	fname = data.get('fname'),
+    	mname = data.get('mname'),
+    	lname = data.get('lname'),
+    	email = data.get('email'),
+    	add1 = data.get('add1'),
+    	add2 = data.get('add2'),
+    	city = data.get('city'),
+    	state = data.get('state'),
+    	pin = data.get('pin'),
+    	password = data.get('pass')
+    	)
+    db.sesssion.add(user)
+    db.sesssion.commit()
+    sesssion['email'] = data.get('email')
+    return redirect(url_for('admin_leads'))
 
 @app.route('/login')
 def login():
