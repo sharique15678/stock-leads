@@ -59,10 +59,18 @@ class AllNotifications(db.Model):
 #Making Models For databse
 @app.route('/')
 def home():
+	if "email" in session :
+    	if session['subscribed'] == True :
+    		return redirect(url_for('short_leads'))
     return render_template('index.html')
 
 @app.route('/subscribe')
 def subscribe():
+	if "email" in session :
+    	if session['subscribed'] == True :
+    		return redirect(url_for('short_leads'))
+    	else :
+    		return redirect(url_for('login'))
 	return render_template('subscribe.html')
 @app.route('/subscribe-user',methods=["POST"])
 def subscribe_user():
@@ -89,10 +97,12 @@ def subscribe_user():
     db.sesssion.add(user)
     db.sesssion.commit()
     sesssion['email'] = data.get('email')
-    return redirect(url_for('admin_leads'))
+    return redirect(url_for('short_leads'))
 
 @app.route('/login')
 def login():
+	if "email" not in session :
+    	return redirect(url_for('login'))
     return render_template('login.html')
 
 @app.route('/login/verify',methods=['POST'])
@@ -103,8 +113,8 @@ def login_user():
     user = Users.query.filter_by(email=data.get('email')).first()
     if user.password != data.get('pass') :
         return "incorrect"
-    if user.subscribed == False :
-        return "please pay to us"
+    # if user.subscribed == False :
+    #     return "please pay to us"
     user.subscribed=True
     db.session.commit()
     session['email']=user.email
@@ -113,6 +123,8 @@ def login_user():
 
 @app.route('/notifications')
 def notifications():
+	if "email" not in session :
+    	return redirect(url_for('login'))
 	user = Users.query.filter_by(email=session['email']).first()
 	notifications = AllNotifications.query.all()
 	list = []
@@ -124,9 +136,13 @@ def notifications():
 
 @app.route('/short-term-leads')
 def short_leads():
+	if "email" not in session :
+    	return redirect(url_for('login'))
 	return render_template('short_leads.html',leads= Leads.query.filter_by(type="short").all())
 @app.route('/long-term-leads')
 def long_leads():
+	if "email" not in session :
+    	return redirect(url_for('login'))
 	return render_template('long_leads.html',leads= Leads.query.filter_by(type="long").all())
 
 @app.route('/admin')
@@ -146,11 +162,15 @@ def admin_logout():
 	return redirect(url_for('admin'))
 @app.route('/admin/leads')
 def admin_leads():
+	if "admin" not in session :
+		return redirect(url_for('admin'))
 	leads = Leads.query.all()
 	return render_template('admin_leads.html',leads=leads)
 
 @app.route('/admin/leads/edit/<int:id>')
 def edit_lead(id):
+	if "admin" not in session :
+		return redirect(url_for('admin'))
 	lead = Leads.query.get(id)
 	return render_template('admin_edit_lead.html',lead= lead)
 @app.route('/admin/leads/edit/confirm/<int:id>',methods=['POST'])
@@ -166,6 +186,8 @@ def confirm_edit_lead(id):
 
 @app.route('/admin/leads/add')
 def add_lead():
+	if "admin" not in session :
+		return redirect(url_for('admin'))
     return render_template('admin_new_lead.html')
 @app.route('/admin/leads/add/verify',methods=['POST'])
 def verify_add_lead():
@@ -195,6 +217,8 @@ def verify_add_lead():
     return redirect(url_for('admin_leads'))
 @app.route('/admin/leads/delete/<int:id>')
 def delete_lead(id):
+	if "admin" not in session :
+		return redirect(url_for('admin'))
     lead = Leads.query.get(id)
     db.session.delete(lead)
     db.session.commit()
@@ -204,11 +228,15 @@ def delete_lead(id):
 
 @app.route('/admin/notifications')
 def admin_notifications():
+	if "admin" not in session :
+		return redirect(url_for('admin'))
 	notifications = AllNotifications.query.all() + Notifications.query.all()
 	return render_template('admin_notification.html' , notifications=notifications)
 
 @app.route('/admin/notifications/add')
 def add_notification():
+	if "admin" not in session :
+		return redirect(url_for('admin'))
     users = Users.query.filter_by(subscribed=True).all()
     return render_template('admin_create_notification.html',users=users)
 @app.route('/admin/notifications/add/verify',methods=['POST'])
@@ -234,12 +262,16 @@ def verify_add_notification():
     return redirect(url_for('admin_notifications'))
 @app.route('/admin/notifications/delete/personal/<int:id>')
 def delete_personal_notification(id):
+	if "admin" not in session :
+		return redirect(url_for('admin'))
     notifi = Notifications.query.get(id)
     db.session.delete(notifi)
     db.session.commit()
     return redirect(url_for('admin_notifications'))
 @app.route('/admin/notifications/delete/public/<int:id>')
 def delete_public_notification(id):
+	if "admin" not in session :
+		return redirect(url_for('admin'))
     notifi = AllNotifications.query.get(id)
     db.session.delete(notifi)
     db.session.commit()
