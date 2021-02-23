@@ -123,9 +123,10 @@ def subscribe_user():
         pin=data.get('pin'),
         password=data.get('pass'),
         )
-    db.sesssion.add(user)
-    db.sesssion.commit()
-    sesssion['email'] = data.get('email')
+    db.session.add(user)
+    db.session.commit()
+    session['email'] = data.get('email')
+    session['subscribed'] = False
     return redirect(url_for('short_leads'))
 
 
@@ -211,10 +212,9 @@ def admin():
 @app.route('/admin/verify', methods=['POST'])
 def verify_admin():
     data = request.form
-    if data.get('uname') == 'name@example.com' and data.get('pass') \
-        == '824210':
-    session['admin'] = True
-    return redirect(url_for('admin_leads'))
+    if data.get('uname') == 'name@example.com' and data.get('pass') == '824210':
+        session['admin'] = True
+        return redirect(url_for('admin_leads'))
     else:
         return 'You Are Not Admin'
 
@@ -405,9 +405,10 @@ def add():
 def delete():
     session.pop('email', None)
     session.pop('subscribed', None)
+    session.pop("admin",None)
     notis = Notifications.query.all()
     for noti in notis:
-        db.sesssion.delete(noti)
+        db.session.delete(noti)
     users = Users.query.all()
     for user in users:
         db.session.delete(user)
