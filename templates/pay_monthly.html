@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pay With PayPal - Monthly subscription</title>
+</head>
+<body>
+
+	<h1 style="width: 100vw; text-align: center;">Monthly Subscription $19.9/Month</h1>
+	<div id="paypal-button-container"></div>
+	<script src="https://www.paypal.com/sdk/js?client-id=AaOOCIHtZSvPqyYkY682MbONErwnJ2_t1JuDhajur6KOFyuA7tXiyRcBMW1Qu4BzW2cegJo7Ylyytetu&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+	<script>
+	  paypal.Buttons({
+	      style: {
+	          shape: 'pill',
+	          color: 'gold',
+	          layout: 'vertical',
+	          label: 'subscribe'
+	      },
+	      createSubscription: function(data, actions) {
+	        return actions.subscription.create({
+	          'plan_id': 'P-95B740990A370372HMA4AOPY'
+	        });
+	      },
+	      onApprove: function(data, actions) {
+	        // alert(data.subscriptionID);
+	        window.location={{url_for('verify_subscribe')}};
+	      }
+	  }).render('#paypal-button-container');
+	</script>
+
+<h2 style="width: 100vw; text-align: center;" ><a href="{{url_for('pay_yearly')}}" style=" text-decoration: none;">Subscribe Yearly</a></h2>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pay With PayPal</title>
+</head>
+<body>
+<div id="paypal-button-container"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=AaOOCIHtZSvPqyYkY682MbONErwnJ2_t1JuDhajur6KOFyuA7tXiyRcBMW1Qu4BzW2cegJo7Ylyytetu&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+<script>
+  paypal.Buttons({
+      style: {
+          shape: 'pill',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'subscribe'
+      },
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({
+          'plan_id': 'P-95B740990A370372HMA4AOPY'
+        });
+      },
+      onApprove: function(data, actions) {
+        alert(data.subscriptionID);
+      }
+  }).render('#paypal-button-container');
+</script>
+
+
+
+</body>
+</html>

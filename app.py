@@ -117,23 +117,74 @@ def subscribe_user():
     if data.get('pass') != data.get('conpass'):
         return render_template('subscribe.html',
                                error='Both Passwords Doesnot Match.')
-    user = Users(
-        fname=data.get('fname'),
-        mname=data.get('mname'),
-        lname=data.get('lname'),
-        email=data.get('email'),
-        add1=data.get('add1'),
-        add2=data.get('add2'),
-        city=data.get('city'),
-        state=data.get('state'),
-        pin=data.get('pin'),
-        password=data.get('pass'),
-        )
-    db.session.add(user)
-    db.session.commit()
+    # user = Users(
+    #     fname=data.get('fname'),
+    #     mname=data.get('mname'),
+    #     lname=data.get('lname'),
+    #     email=data.get('email'),
+    #     add1=data.get('add1'),
+    #     add2=data.get('add2'),
+    #     city=data.get('city'),
+    #     state=data.get('state'),
+    #     pin=data.get('pin'),
+    #     password=data.get('pass'),
+    #     )
+    # db.session.add(user)
+    # db.session.commit()
+    session["fname"] = data.get('fname')
+    session["mname"] = data.get('mname')
+    session["lname"] = data.get('lname')
     session['email'] = data.get('email')
+    session["add1"] = data.get('add1')
+    session["add2"] = data.get('add2')
+    session["city"] = data.get("city")
+    session["state"] = data.get('state')
+    session["pin"] = data.get('pin')
+    session["password"] = data.get('pass')
     session['subscribed'] = False
-    return redirect(url_for('short_leads'))
+    return redirect(url_for('pay_yearly'))
+
+@app.route('/subscribe-user/pay_yearly')
+def pay_yearly():
+    if 'email' in session :
+        return render_template('pay_yearly.html')
+    else :
+        return redirect(url_for('subscribe'))
+
+@app.route('/subscribe-user/pay_monthly')
+def pay_monthly():
+    if 'email' in session :
+        return render_template('pay_monthly.html')
+    else :
+        return redirect(url_for('subscribe'))
+
+@app.route('/subscribe-user/verify' ,methods=["GET","POST"])
+def verify_subscribe():
+    if "email" in session :
+        if session['subscribed'] == False :
+            user = Users(
+                    fname=data.get('fname'),
+                    mname=data.get('mname'),
+                    lname=data.get('lname'),
+                    email=data.get('email'),
+                    add1=data.get('add1'),
+                    add2=data.get('add2'),
+                    city=data.get('city'),
+                    state=data.get('state'),
+                    pin=data.get('pin'),
+                    password=data.get('pass'),
+                    subscribed = True
+                    )
+            db.session.add(user)
+            db.session.commit()
+            return render_template('pay_reciept.html')
+        else :
+            return redirect(url_for('home'))
+    else :
+        return redirect(url_for('subscribe'))
+
+
+
 
 
 @app.route('/login')
@@ -148,10 +199,10 @@ def login():
 def login_user():
     data = request.form
     if not Users.query.filter_by(email=data.get('email')).all():
-        return 'invalid'
+        return render_template('login.html',error="User Not Found!")
     user = Users.query.filter_by(email=data.get('email')).first()
     if user.password != data.get('pass'):
-        return 'incorrect'
+        return render_template('login.html',error="Incorrect Password Entered!")
 
     # if user.subscribed == False :
     #     return "please pay to us"
