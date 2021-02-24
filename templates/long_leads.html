@@ -19,8 +19,8 @@
         padding-right: 5px !important;
       }
        header  div .lead {
-        border: solid 1px #a9a9a9;
-        background-color: #a9a9a9;
+        border: solid 1px black;
+        background-color: black;
         font-size: 1rem;
         color: white;
         font-family: 'Lora', serif;
@@ -111,10 +111,10 @@
             Short Term <br> <span>{{sell.short}}%</span>
           </div>
           <div class="col justify-content-center mt-1 p-1 text-center lead l2" >
-            Mid Term <br> <span>{{sell.mid}} %</span>
+            Mid Term <br> <span>{{sell.mid}}%</span>
           </div>
           <div class="col justify-content-center mt-1 p-1 text-center lead l3" >
-            Long Term <br> <span>{{sell.long}} %</span>
+            Long Term <br> <span>{{sell.long}}%</span>
           </div>
         </div>
       </div>
@@ -148,23 +148,23 @@
                       </div>
                       <div class="col-4 buy">
                         <p class="m-0">Buy Target</p>
-                        <span class="buy-target d-block">{{lead.buy_price}}</span>
+                        <span class="buy-target d-block">${{lead.buy_price}}</span>
                       </div>
                     </div>
                     <div class="lead-box row">
                      <div class="lead-box-in col-8" style="padding-left: 3px !important;">
                           <h5 style="font-family: 'Lora', serif;" class="text-center">Expected Profit</h5>
-                          <h4 class="lead-profit text-center"> <b>{{lead.profit}} %</b></h4>
+                          <h4 class="lead-profit text-center"> <b>{{lead.profit}}%</b></h4>
                       </div>
                       <div class="col-4 sell">
                         <p class="m-0">Sell Target</p>
-                        <span class="sell-target d-block">{{lead.sell_price}}</span>
+                        <span class="sell-target d-block">${{lead.sell_price}}</span>
                       </div>
                     </div>
                 </div>
               {% endfor %}
- 
-                
+
+
 
                   <div class="row justify-content-center mt-2">
                     <div class="col-12 col-xl-4 col-lg-6 col-md-6 col-sm-6" style="padding: 5px 30px 5px 30px;">
