@@ -57,13 +57,13 @@
       }
       .main-lead-box .buy span {
         color: purple;
-        text-align: center; 
+        text-align: center;
         font-size: 1.5rem;
         font-family: 'Roboto Mono', monospace;
       }
       .main-lead-box .sell span {
         color: green;
-        text-align: center; 
+        text-align: center;
         font-size: 1.5rem;
         font-family: 'Roboto Mono', monospace;
       }
@@ -99,13 +99,13 @@
         </div>
         <div class="row justify-content-center mt-2" style="font-size: 6rem;">
           <div class="col justify-content-center mt-1 p-1 text-center lead l1" >
-            Short Term <br> <span>XX%</span>
+            Short Term <br> <span>{{sell.short}}%</span>
           </div>
           <div class="col justify-content-center mt-1 p-1 text-center lead l2" >
-            Mid Term <br> <span>XX%</span>
+            Mid Term <br> <span>{{sell.mid}}%</span>
           </div>
           <div class="col justify-content-center mt-1 p-1 text-center lead l3" >
-            Long Term <br> <span>XX%</span>
+            Long Term <br> <span>{{sell.long}}%</span>
           </div>
         </div>
       </div>
@@ -144,7 +144,7 @@
                     <div class="lead-box row">
                      <div class="lead-box-in col-8" style="padding-left: 3px !important;">
                           <h5 style="font-family: 'Lora', serif;" class="text-center">Expected Profit</h5>
-                          <h4 class="lead-profit text-center"> <b>{{lead.profit}}</b></h4>
+                          <h4 class="lead-profit text-center"> <b>{{lead.profit}} %</b></h4>
                       </div>
                       <div class="col-4 sell">
                         <p class="m-0">Sell Target</p>
@@ -157,219 +157,6 @@
                 </div>
 
               {% endfor %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <div class="col-auto main-lead-box">
-                    <div class="lead-box row">
-                      <div class="lead-box-in col-8">
-                        <div class="row">
-                          <div class="col-5">
-                            <img src="../static/logo.png" class="lead-logo">
-                          </div>
-                          <div class="main-lead-box-p col-7">
-                            <span class="m-0" style="font-size: 1.2rem;font-weight: 500;font-family: 'Lora', serif;">Lead Name</span> <br>
-                            <span class="lead-date" style="font-size: 0.8rem;">2 jan 2020</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-4 buy">
-                        <p class="m-0">Buy Target</p>
-                        <span class="buy-target d-block">135</span>
-                      </div>
-                    </div>
-                    <div class="lead-box row">
-                     <div class="lead-box-in col-8" style="padding-left: 3px !important;">
-                          <h5 style="font-family: 'Lora', serif;" class="text-center">Expected Profit</h5>
-                          <h4 class="lead-profit text-center"> <b>60%</b></h4>
-                      </div>
-                      <div class="col-4 sell">
-                        <p class="m-0">Sell Target</p>
-                        <span class="sell-target d-block">145</span>
-                      </div>
-                    </div>
-                   <!--  <div class="row justify-content-center">
-                      <div class="col-auto text-success"><b>Good For Option</b></div>
-                    </div> -->
-                </div>
-                  
-                <div class="col-auto main-lead-box">
-                    <div class="lead-box row">
-                      <div class="lead-box-in col-8">
-                        <div class="row">
-                          <div class="col-5">
-                            <img src="../static/logo.png" class="lead-logo">
-                          </div>
-                          <div class="main-lead-box-p col-7">
-                            <span class="m-0" style="font-size: 1.2rem;font-weight: 500;font-family: 'Lora', serif;">Lead Name</span> <br>
-                            <span class="lead-date" style="font-size: 0.8rem;">2 jan 2020</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-4 buy">
-                        <p class="m-0">Buy Target</p>
-                        <span class="buy-target d-block">135</span>
-                      </div>
-                    </div>
-                    <div class="lead-box row">
-                     <div class="lead-box-in col-8" style="padding-left: 3px !important;">
-                          <h5 style="font-family: 'Lora', serif;" class="text-center">Expected Profit</h5>
-                          <h4 class="lead-profit text-center"> <b>60%</b></h4>
-                      </div>
-                      <div class="col-4 sell">
-                        <p class="m-0">Sell Target</p>
-                        <span class="sell-target d-block">145</span>
-                      </div>
-                    </div>
-                   <!--  <div class="row justify-content-center">
-                      <div class="col-auto text-success"><b>Good For Option</b></div>
-                    </div> -->
-                </div>
-
-
-                <div class="col-auto main-lead-box">
-                    <div class="lead-box row">
-                      <div class="lead-box-in col-8">
-                        <div class="row">
-                          <div class="col-5">
-                            <img src="../static/logo.png" class="lead-logo">
-                          </div>
-                          <div class="main-lead-box-p col-7">
-                            <span class="m-0" style="font-size: 1.2rem;font-weight: 500;font-family: 'Lora', serif;">Lead Name</span> <br>
-                            <span class="lead-date" style="font-size: 0.8rem;">2 jan 2020</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-4 buy">
-                        <p class="m-0">Buy Target</p>
-                        <span class="buy-target d-block">135</span>
-                      </div>
-                    </div>
-                    <div class="lead-box row">
-                     <div class="lead-box-in col-8" style="padding-left: 3px !important;">
-                          <h5 style="font-family: 'Lora', serif;" class="text-center">Expected Profit</h5>
-                          <h4 class="lead-profit text-center"> <b>60%</b></h4>
-                      </div>
-                      <div class="col-4 sell">
-                        <p class="m-0">Sell Target</p>
-                        <span class="sell-target d-block">145</span>
-                      </div>
-                    </div>
-                   <!--  <div class="row justify-content-center">
-                      <div class="col-auto text-success"><b>Good For Option</b></div>
-                    </div> -->
-                </div>
-
-
-                <div class="col-auto main-lead-box">
-                    <div class="lead-box row">
-                      <div class="lead-box-in col-8">
-                        <div class="row">
-                          <div class="col-5">
-                            <img src="../static/logo.png" class="lead-logo">
-                          </div>
-                          <div class="main-lead-box-p col-7">
-                            <span class="m-0" style="font-size: 1.2rem;font-weight: 500;font-family: 'Lora', serif;">Lead Name</span> <br>
-                            <span class="lead-date" style="font-size: 0.8rem;">2 jan 2020</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-4 buy">
-                        <p class="m-0">Buy Target</p>
-                        <span class="buy-target d-block">135</span>
-                      </div>
-                    </div>
-                    <div class="lead-box row">
-                     <div class="lead-box-in col-8" style="padding-left: 3px !important;">
-                          <h5 style="font-family: 'Lora', serif;" class="text-center">Expected Profit</h5>
-                          <h4 class="lead-profit text-center"> <b>60%</b></h4>
-                      </div>
-                      <div class="col-4 sell">
-                        <p class="m-0">Sell Target</p>
-                        <span class="sell-target d-block">145</span>
-                      </div>
-                    </div>
-                   <!--  <div class="row justify-content-center">
-                      <div class="col-auto text-success"><b>Good For Option</b></div>
-                    </div> -->
-                </div>
-
-
-                <div class="col-auto main-lead-box">
-                    <div class="lead-box row">
-                      <div class="lead-box-in col-8">
-                        <div class="row">
-                          <div class="col-5">
-                            <img src="../static/logo.png" class="lead-logo">
-                          </div>
-                          <div class="main-lead-box-p col-7">
-                            <span class="m-0" style="font-size: 1.2rem;font-weight: 500;font-family: 'Lora', serif;">Lead Name</span> <br>
-                            <span class="lead-date" style="font-size: 0.8rem;">2 jan 2020</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-4 buy">
-                        <p class="m-0">Buy Target</p>
-                        <span class="buy-target d-block">135</span>
-                      </div>
-                    </div>
-                    <div class="lead-box row">
-                     <div class="lead-box-in col-8" style="padding-left: 3px !important;">
-                          <h5 style="font-family: 'Lora', serif;" class="text-center">Expected Profit</h5>
-                          <h4 class="lead-profit text-center"> <b>60%</b></h4>
-                      </div>
-                      <div class="col-4 sell">
-                        <p class="m-0">Sell Target</p>
-                        <span class="sell-target d-block">145</span>
-                      </div>
-                    </div>
-                   <!--  <div class="row justify-content-center">
-                      <div class="col-auto text-success"><b>Good For Option</b></div>
-                    </div> -->
-                </div>
-
-                <div class="col-auto main-lead-box">
-                    <div class="lead-box row">
-                      <div class="lead-box-in col-8">
-                        <div class="row">
-                          <div class="col-5">
-                            <img src="../static/logo.png" class="lead-logo">
-                          </div>
-                          <div class="main-lead-box-p col-7">
-                            <span class="m-0" style="font-size: 1.2rem;font-weight: 500;font-family: 'Lora', serif;">Lead Name</span> <br>
-                            <span class="lead-date" style="font-size: 0.8rem;">2 jan 2020</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-4 buy">
-                        <p class="m-0">Buy Target</p>
-                        <span class="buy-target d-block">135</span>
-                      </div>
-                    </div>
-                    <div class="lead-box row">
-                     <div class="lead-box-in col-8" style="padding-left: 3px !important;">
-                          <h5 style="font-family: 'Lora', serif;" class="text-center">Expected Profit</h5>
-                          <h4 class="lead-profit text-center"> <b>60%</b></h4>
-                      </div>
-                      <div class="col-4 sell">
-                        <p class="m-0">Sell Target</p>
-                        <span class="sell-target d-block">145</span>
-                      </div>
-                    </div>
-                   <!--  <div class="row justify-content-center">
-                      <div class="col-auto text-success"><b>Good For Option</b></div>
-                    </div> -->
-                </div>
 
 
 

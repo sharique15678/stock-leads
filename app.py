@@ -33,7 +33,11 @@ class Leads(db.Model):
     good_for_trade = db.Column(db.Boolean, nullable=False, default=True)
     date = db.Column(db.String(100), nullable=False,
                      default=date.today().strftime('%d/%m/%Y'))
-
+class Sells(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    short = db.Column(db.String(50), nullable=False)
+    mid = db.Column(db.String(50), nullable=False)
+    long = db.Column(db.String(50), nullable=False)
 
 class Users(db.Model):
 
@@ -85,7 +89,9 @@ def home():
     if 'email' in session:
         if session['subscribed'] == True:
             return redirect(url_for('short_leads'))
-    return render_template('index.html')
+    leads = Leads.query.filter_by(type="home").all()
+    sell = Sells.query.first()
+    return render_template('index.html', leads=leads,sell=sell)
 
 
 @app.route('/subscribe')
@@ -174,6 +180,7 @@ def notifications():
             }
         list.append(b)
     notifications = notifications + list
+    notifications.reverse()
     return render_template('notification.html',
                            notifications=notifications,
                            date=date.today().strftime('%d/%m/%Y'))
@@ -183,7 +190,8 @@ def notifications():
 def short_leads():
     if 'email' not in session:
         return redirect(url_for('login'))
-    return render_template('short_leads.html',
+    sell = Sells.query.first()
+    return render_template('short_leads.html',sell=sell,
                            leads=Leads.query.filter_by(type='short'
                            ).all())
 
@@ -192,7 +200,8 @@ def short_leads():
 def long_leads():
     if 'email' not in session:
         return redirect(url_for('login'))
-    return render_template('long_leads.html',
+    sell = Sells.query.first()
+    return render_template('long_leads.html',sell=sell,
                            leads=Leads.query.filter_by(type='long'
                            ).all())
 
@@ -229,8 +238,11 @@ def admin_logout():
 def admin_leads():
     if 'admin' not in session:
         return redirect(url_for('admin'))
-    leads = Leads.query.all()
-    return render_template('admin_leads.html', leads=leads)
+    leads_rev = Leads.query.all()
+    leads_rev.reverse()
+    leads = leads_rev
+    sell = Sells.query.first()
+    return render_template('admin_leads.html', leads=leads,sell=sell)
 
 
 @app.route('/admin/leads/edit/<int:id>')
@@ -249,6 +261,9 @@ def confirm_edit_lead(id):
     lead.type = data.get('type')
     lead.buy_price = data.get('buy_price')
     lead.sell_price = data.get('sell_price')
+    lead.profit= str("{:.2f}".format(((float(data.get('sell_price'))
+                       - float(data.get('buy_price')))
+                       / float(data.get('buy_price')))*100))
     db.session.commit()
     return redirect(url_for('admin_leads'))
 
@@ -270,10 +285,8 @@ def verify_add_lead():
             type=data.get('type'),
             buy_price=str(float(data.get('buy_price'))),
             sell_price=str(float(data.get('sell_price'))),
-            profit=str((float(data.get('sell_price'))
-                       - float(data.get('buy_price')))
-                       / float(data.get('buy_price'))),
-            good_for_trade=True,
+            profit=str("{:.2f}".format(((float(data.get('sell_price'))- float(data.get('buy_price')))/ float(data.get('buy_price')))*100)),
+            good_for_trade=True
             )
     else:
         lead = Leads(
@@ -282,10 +295,10 @@ def verify_add_lead():
             type=data.get('type'),
             buy_price=str(float(data.get('buy_price'))),
             sell_price=str(float(data.get('sell_price'))),
-            profit=str((float(data.get('sell_price'))
+            profit=str("{:.2f}".format(((float(data.get('sell_price'))
                        - float(data.get('buy_price')))
-                       / float(data.get('buy_price'))),
-            good_for_trade=False,
+                       / float(data.get('buy_price')))*100)),
+            good_for_trade=False
             )
     db.session.add(lead)
     db.session.commit()
@@ -300,7 +313,21 @@ def delete_lead(id):
     db.session.delete(lead)
     db.session.commit()
     return redirect(url_for('admin_leads'))
-
+@app.route('/admin/sells/update',methods=["POST"])
+def update_sells():
+    sells = Sells.query.all()
+    for sell in sells :
+        db.session.delete(sell)
+    db.session.commit()
+    data = request.form
+    sell = Sells(
+        short = data.get('short'),
+        mid = data.get('mid'),
+        long = data.get('long')
+        )
+    db.session.add(sell)
+    db.session.commit()
+    return redirect(url_for('admin_leads'))
 
 @app.route('/admin/notifications')
 def admin_notifications():
@@ -308,6 +335,7 @@ def admin_notifications():
         return redirect(url_for('admin'))
     notifications = AllNotifications.query.all() \
         + Notifications.query.all()
+    notifications.reverse()
     return render_template('admin_notification.html',
                            notifications=notifications)
 
@@ -362,6 +390,8 @@ def delete_public_notification(id):
 
 @app.route('/add-all')
 def add():
+    sell = Sells(short="56",mid="65",long="56")
+    db.session.add(sell)
     for i in range(10):
         lead = Leads(
             name='amazon Lead' + str(i),

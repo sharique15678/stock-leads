@@ -137,6 +137,29 @@
         </nav>
         <hr />
         <div class="container-fluid row justify-content-center main-content m-0">
+
+
+
+            <form class="row g-3" method="POST" action="{{url_for('update_sells')}}">
+              <div class="col-auto">
+                <label for="staticEmail2">Short term</label>
+                <input type="number" class="form-control"  value="{{sell.short}}" name="short">
+              </div>
+              <div class="col-auto">
+                <label for="inputPassword2">Mid Term</label>
+                <input type="number" class="form-control"  value="{{sell.mid}}" name="mid">
+              </div>
+              <div class="col-auto">
+                <label for="inputPassword2">Long Term</label>
+                <input type="number" class="form-control"  value="{{sell.long}}" name="long">
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Update</button>
+              </div>
+            </form>
+
+
+
     <h1 class="col-auto">All Leads</h1>
     <div class="col-12 container-fluid" style="overflow: scroll">
         <table class="table table-responsive text-center">

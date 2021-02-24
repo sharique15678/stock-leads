@@ -46,9 +46,15 @@
                   {% if lead.type=="short" %}
                   <option value="short" selected>Short Term</option>
                   <option value="long">Long Term</option>
-                  {% else %}
+                  <option value="home">Home Lead</option>
+                  {% elif lead.type=="home" %}
+                  <option value="short">Short Term</option>
+                  <option value="long">Long Term</option>
+                  <option value="home" selected>Home Lead</option>
+                  {% elif lead.type=="long" %}
                   <option value="short">Short Term</option>
                   <option value="long" selected>Long Term</option>
+                  <option value="home">Home Lead</option>
                   {% endif %}
              </select>
             </div>
