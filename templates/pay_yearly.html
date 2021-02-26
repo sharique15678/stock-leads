@@ -22,8 +22,7 @@
         });
       },
       onApprove: function(data, actions) {
-        // alert(data.subscriptionID);
-        window.location={{url_for('verify_subscribe')}};
+        alert(data.subscriptionID);
       }
   }).render('#paypal-button-container');
 </script>
